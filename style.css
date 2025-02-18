@@ -1,45 +1,91 @@
-/* styles.css */
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
-  }
-  
-  #damier {
+}
+
+h1 {
+    margin: 20px 0;
+}
+
+#info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#tour, #score {
+    margin: 5px 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#reset {
+    padding: 10px 20px;
+    font-size: 1em;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #769656;
+    color: #fff;
+    border-radius: 5px;
+}
+
+#damier {
     display: grid;
     grid-template-columns: repeat(8, 50px);
     grid-template-rows: repeat(8, 50px);
     gap: 2px;
     margin-top: 20px;
-  }
-  
-  .case {
+}
+
+.case {
     width: 50px;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #769656; /* Couleur des cases claires */
-  }
-  
-  .case.noire {
-    background-color: #eeeed2; /* Couleur des cases sombres */
-  }
-  
-  .pion {
+    background-color: #769656;
+    position: relative;
+    overflow: hidden;
+}
+
+.case.noire {
+    background-color: #eeeed2;
+}
+
+.pion {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     background-color: #000;
     cursor: pointer;
-  }
-  
-  .pion.blanc {
+    transition: transform 0.5s ease;
+    position: absolute;
+}
+
+.pion.blanc {
     background-color: #fff;
-  }
-  
-  .pion.dame {
-    border: 3px solid gold; /* Indique une dame */
-  }
+}
+
+.pion.dame {
+    border: 3px solid gold;
+}
+
+.selectionne .pion {
+    transform: scale(1.2);
+}
+
+.en-mouvement {
+    transition: transform 0.5s ease;
+}
+
+@keyframes pionMove {
+    from { transform: translate(0, 0); }
+    to { transform: translate(var(--x), var(--y)); }
+}
+
+.case.selectionne .pion {
+    animation: pionMove 0.5s ease forwards;
+}
